@@ -20,7 +20,7 @@ foreach ($cp in $x.chargePoints.chargePoint) {
 
         foreach ($con in $cn.connectors) {
             # $con | format-table
-            if (($cpn -eq 50690) -or ($cpn -eq 50691)) {
+            if (($cpn -eq 50690) -or ($cpn -eq 50691) -or ($cpn -eq 60238)) {
                 write-output "$($cpn) $($con.connectorID) $($con.connectorStatus)"
                 }
             # $con.connectorID
