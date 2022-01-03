@@ -2,7 +2,10 @@
 
 $url = 'https://account.chargeplacescotland.org/api/v2/poi/chargepoint/dynamic'
 
-$headers = @{'api-auth' = $api_key}
+$headers = @{
+    'api-auth' = $api_key
+    'chargePointIDs' = '50690,50691'
+}
 
 $collated = ('','','')
 $count = 0
@@ -40,3 +43,10 @@ foreach ($cp in $x.chargePoints.chargePoint) {
     }
 
 }
+
+exit
+
+## Notes
+
+$x.chargePoints.chargePoint |? {$_.Name -eq 50690} | select id
+(($x.chargePoints.chargePoint |? {$_.Name -eq 50690}).connectorGroups).connectors
