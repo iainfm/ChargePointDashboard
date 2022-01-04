@@ -47,7 +47,13 @@ foreach ($y->chargePoints as $item) {
 		foreach ($conn->connectors as $id)
 			$etd = '';
 			print "<TR>\n";
-			print "<TD>" . $item->chargePoint->name . "</TD>";
+			print "<TD>";
+			print '<A HREF="https://chargeplacescotland.org/cpmap/chargepoint/';
+			print $item->chargePoint->id;
+			print '">';
+			print $item->chargePoint->name;
+			print '</A>';
+			print "</TD>";
 			print "<TD>" . $id->connectorID . "</TD>";
 			
 			$cs = $id->connectorStatus;
