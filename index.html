@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-162114097-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-162114097-1');
+</script>
+  <style>
+  body, html {
+	font-size: 2vw;
+	color: yellow !important;
+	}
+  input {
+	font-size: 2vw;
+	}
+.field {
+		width: 45%;
+		}
+		
+	</style>
+  <meta charset="utf-8">
+  <!--meta name="viewport" content="width=device-width, initial-scale=1"-->
+  <title>MTS Ltd - Enter ChargePlace IDs</title>
+  <link rel="icon" sizes="192x192" href="img/192x192.png">
+  <link rel="icon" type="image/png" href="img/favicon-32x32.png" sizes="32x32" />
+  <link rel="icon" type="image/png" href="img/favicon-16x16.png" sizes="16x16" />
+  <link rel="stylesheet" type="text/css" href="cpdash.css">
+  <link rel="stylesheet" href="https:////code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+	
+  $( function() {
+
+    $( "#tags" ).autocomplete({
+      source: function(request, response) {
+        var results = $.ui.autocomplete.filter(availableTags, request.term);
+        
+        response(results.slice(0, 15));
+    },
+	  minLength: 2
+    });
+  } );
+  
+  function getStatus(points) {
+	if (!points) { points = document.getElementById("tags").value; }
+	console.log(points)
+	var url = "/curl.php?ids=" + points;
+		// alert(url);
+		setTimeout(function(){ window.location.href = url; } ,100);
+
+	}
+
+function bodge() {
+	//alert(location.href.substr(location.href.length -1));
+	
+	if (location.href.substr(location.href.length -1) != '#') {
+		location.replace(location.href + '#');
+		}
+	}
+  </script>
+</head>
+<body onload="return bodge()">
+<div>
+<table class='tTitleL'><tr><th colspan = 2 class='tTitleL'>ChargePlace Dashboard</th><tr>
+</table>
+<p>
+<center>
+
+<form action="javascript:void(0);">Charge Points (comma-separated): <input id="tags" class='field' type="text" onkeypress="if (event.keyCode === 13) {getStatus()}";>
+<input type="button" id = "go" value="Get Status" onclick="getStatus()">
+  <input id="reset" type="reset" value="Reset">
+  </form>
+  </center>
+  </p>
+</div>
+ 
+ 
+</body>
+</html>
