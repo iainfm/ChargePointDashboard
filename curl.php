@@ -18,6 +18,14 @@ fclose($f);
 <body>
 <?php
 
+function sortByID($a, $b) {
+	return $a[0] - $b[0];
+}
+
+function sortByConn($a, $b) {
+	return $a[2] - $b[2];
+}
+
 $cpIDs = str_replace('%20', '', $_GET["ids"]);
 $cpIDs = str_replace(' ', '', $cpIDs);
 
@@ -41,41 +49,57 @@ $y = json_decode($x);
 print "<TABLE>\n";
 print "<TH>CP id</TH><TH>Socket</TH><TH>Status</TH>\n";
 
+$results = array();
+$lines = array();
+
+$i = 0;
 foreach ($y->chargePoints as $item) {
 	# var_dump($cp) ;
 	foreach ($item->chargePoint->connectorGroups as $conn) {
 		foreach ($conn->connectors as $id)
-			$etd = '';
-			print "<TR>\n";
-			print "<TD>";
-			print '<A HREF="https://chargeplacescotland.org/cpmap/chargepoint/';
-			print $item->chargePoint->id;
-			print '">';
-			print $item->chargePoint->name;
-			print '</A>';
-			print "</TD>";
-			print "<TD>" . $id->connectorID . "</TD>";
-			
-			$cs = $id->connectorStatus;
-			
-			switch ($cs) {
-				case 'OCCUPIED':
-					$etd = '<font color = "orange">';
-					break;
-				case 'UNKNOWN':
-					$etd = '<font color = "grey">';
-					break;
-				default:
-					$etd = '<font>';
-			}
-			
-			print "<TD>" . $etd . $cs . "</font></TD>\n";
-			print "</TR>\n";
+			$lines[0] = $item->chargePoint->name;
+			$lines[1] = $item->chargePoint->id;
+			$lines[2] = $id->connectorID;
+			$lines[3] = $id->connectorStatus;
+			$results[$i] = $lines;
+			$i++;
+		}
 	}
+
+usort($results, 'sortByConn');
+usort($results, 'sortByID');
+
+foreach ($results as $result) {
+	$etd = '';
+	print "<TR>\n";
+	print "<TD>";
+	print '<A HREF="https://chargeplacescotland.org/cpmap/chargepoint/';
+	print $result[1];
+	print '">';
+	print $result[0];
+	print '</A>';
+	print "</TD>";
+	print "<TD>" . $result[2] . "</TD>";
+	$cs = $id->connectorStatus;
+	
+	switch ($result[3]) {
+		case 'OCCUPIED':
+			$etd = '<font color = "orange">';
+			break;
+		case 'UNKNOWN':
+			$etd = '<font color = "grey">';
+			break;
+		case 'AVAILABLE':
+			$etd = '<font color = "lime">';
+			break;
+		default:
+			$etd = '<font>';
+	}
+	
+	print "<TD>" . $etd . $result[3] . "</font></TD>\n";
+	print "</TR>\n";
 }
-
 print "</TABLE>\n";
-
 ?>
 
 </body>
