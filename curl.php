@@ -6,11 +6,15 @@
 $cssdate = date('Ymd');
 echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"/cpdash.css?ver=" . $cssdate . "\">";
 
+# Read the API key from secure file
 $apifile = '/var/www/dbc/cps.apikey';
 $f = fopen($apifile, "r") or die("Unable to open file!");
 $apikey = fread($f, filesize($apifile)-1);
 fclose($f);
 
+# Get static chargepoint information
+$f = file_get_contents('/var/www/dbc/static.txt');
+$static = json_decode($f, false);
 ?>
 
 </head>
@@ -47,7 +51,7 @@ curl_close ($ch);
 $y = json_decode($x);
 
 print "<TABLE>\n";
-print "<TH>CP id</TH><TH>Socket</TH><TH>Status</TH>\n";
+# print "<TH>CP id</TH><TH>Status</TH>\n";
 
 $results = array();
 $lines = array();
@@ -69,16 +73,46 @@ foreach ($y->chargePoints as $item) {
 usort($results, 'sortByConn');
 usort($results, 'sortByID');
 
+$current = '';
 foreach ($results as $result) {
+
 	$etd = '';
-	print "<TR>\n";
-	print "<TD>";
-	print '<A HREF="https://chargeplacescotland.org/cpmap/chargepoint/';
-	print $result[1];
-	print '">';
-	print $result[0];
-	print '</A>';
-	print "</TD>";
+
+	if ($result[0] != $current) {
+		if ($current != '') {
+			print "<TR><TD colspan='100%'></TD></TR>\n";
+		}
+
+		$current = $result[0];
+		print "<TR>\n";
+		print "<TD>";
+		print '<A HREF="https://chargeplacescotland.org/cpmap/chargepoint/';
+		print $result[1];
+		print '">';
+		print $result[0];
+		print '</A>';
+		print "</TD>";
+		print "<TD colspan='100%' class='address'>\n";
+
+
+		foreach ($static->features as $cp) {
+			if ($cp->properties->name == $result[0]) {
+				foreach ($cp->properties->address as $ad) {
+					if (($ad != '') && ($ad != 'GB')) {
+						print $ad;
+						print '<br>';
+					}	
+				}
+			}
+		}
+		print "</TD>\n";
+		print "</TR>\n";
+	}
+
+	if ($result[2] == '1') {
+		print "</TR>\n";
+	}
+
 	print "<TD>" . $result[2] . "</TD>";
 	$cs = $id->connectorStatus;
 	
@@ -93,11 +127,13 @@ foreach ($results as $result) {
 			$etd = '<font color = "lime">';
 			break;
 		default:
-			$etd = '<font>';
+			$etd = '<font color = "grey">';
 	}
 	
 	print "<TD>" . $etd . $result[3] . "</font></TD>\n";
-	print "</TR>\n";
+	# print "<TD colspan='100%'></TD>\n";
+	# print "</TR>\n";
+	# print "<TR><TD colspan=2>&nbsp;</TD></TR>\n";
 }
 print "</TABLE>\n";
 ?>

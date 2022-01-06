@@ -1,3 +1,12 @@
+a {
+	color: white;
+	text-decoration: none;
+}
+
+a:visited {
+	color: white;
+	text-decoration: none;
+}
 body {
 	background-color: black;
 	font-weight:	normal;
@@ -54,16 +63,31 @@ td {
 	background:	rgb(60,60,60);
 	font-weight:	normal;
 	color:		yellow;
-	text-transform:	uppercase;
+	# text-transform:	uppercase;
 	font-family: "Helvetica", Sans-Serif;
 	vertical-align: top;
 	font-size:	4vw;
+	border: 4px solid black;
+}
 
+td.address {
+	padding:	15px 20px;
+	background:	rgb(60,60,60);
+	font-weight:	normal;
+	color:		yellow;
+	# text-transform:	uppercase;
+	font-family: "Helvetica", Sans-Serif;
+	vertical-align: top;
+	font-size:	4vw;
+	border: 4px solid black;
 }
 
 table {
 	width:		100%;
 	align:		center;
+	background:	rgb(60,60,60);
+	border: 1px solid black;
+	border-collapse: collapse;
 }
 
 .tfooter {

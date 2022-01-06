@@ -11,7 +11,7 @@ headers = {'api-auth': api_key}
 
 x = requests.get(url, headers=headers)
 y = json.loads(x.text)
-# pprint(y)
+print(y)
 
 static = []
 i = 0
@@ -27,5 +27,5 @@ for feature in y['features']:
         (feature['properties']['address']['postcode']).encode('utf-8')
     ]
     static.append(line)
-pprint(static)
+# print(json.dumps(static))
 
