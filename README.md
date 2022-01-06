@@ -6,3 +6,5 @@ To obtain the API key run:
 curl -s https://chargeplacescotland.org/ | find /i "apiAuthKey"
 
 (or *nix equivalent)
+
+Use at your own risk.
