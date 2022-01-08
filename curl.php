@@ -103,6 +103,12 @@ foreach ($results as $result) {
 						print '<br>';
 					}	
 				}
+				$fee = $cp->properties->tariff->amount;
+				if ($fee != '') {
+					print '£';
+					print $fee;
+					print " / kWh";
+				}
 			}
 		}
 		print "</TD>\n";
@@ -138,5 +144,14 @@ foreach ($results as $result) {
 print "</TABLE>\n";
 ?>
 
+<h2>
+<center>
+<p>
+This is an unofficial service that is not affiliated with ChargePlace Scotland.</p>
+<p>Data is supplied without any warranty and may be incorrect or out of date.</p>
+<p>Additional parking / charging fees may apply.</p>
+<p>For official information please visit
+<br><a href="https://www.chargeplacescotland.org"</a>ChargePlace Scotland.</p></center>
+</h2>
 </body>
 </html>
