@@ -1,5 +1,7 @@
 # ChargePointDashboard
 
+Now available at http://cpsdash.iainfm.co.uk/
+
 A collection of scripts to collect data from providers of information for electric vehicle charging points, some via published APIs, some...not so much.
 
 To obtain the API key for CPS run:
