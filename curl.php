@@ -160,7 +160,7 @@ $fburl = 'https://www.facebook.com/sharer.php?u=' . $rawurl;
 $twurl = 'https://twitter.com/intent/tweet?url=' . $rawurl . '&text=Here are my chargers';
 echo 'Share using: ';
 echo '<a href="' . $twurl . '">';
-echo '<img src="twitter.png" style="width:70px;height:70px;"></u>';
+echo '<img src="twitter.png" style="width:80px;height:80px;"></u>';
 echo '</a>';
 echo ' | ';
 echo '<a href="' . $fburl . '">';
