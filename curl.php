@@ -147,11 +147,33 @@ print "</TABLE>\n";
 <h2>
 <center>
 <p>
+<?php
+$url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+$escaped_url = htmlspecialchars( $url, ENT_QUOTES, 'UTF-8' );
+$rawurl = rawurlencode( $url );
+echo '<p></p>';
+$fburl = 'https://www.facebook.com/sharer.php?u=' . $rawurl;
+$twurl = 'https://twitter.com/intent/tweet?url=' . $rawurl . '&text=Here are my chargers';
+echo 'Share using: ';
+echo '<a href="' . $twurl . '">';
+echo '<img src="twitter.png" style="width:70px;height:70px;"></u>';
+echo '</a>';
+echo ' | ';
+echo '<a href="' . $fburl . '">';
+echo '<img src="facebook.png" style="width:80px;height:80px;"></u>';
+echo ' | ';
+echo '<a href="' . $escaped_url . '">';
+echo '<img src="link.png" style="width:80px;height:80px;"></u>';
+echo '</a>';
+?>
+</p>
+<hr>
+<p>
 This is an unofficial service that is not affiliated with ChargePlace Scotland.</p>
 <p>Data is supplied without any warranty and may be incorrect or out of date.</p>
-<p>Additional parking / charging fees may apply.</p>
+<p>Additional connection, parking, charging or other fees may apply.</p>
 <p>For official information please visit
-<br><a href="https://www.chargeplacescotland.org"</a>ChargePlace Scotland.</p></center>
+<br><a href="https://www.chargeplacescotland.org"</a><u>ChargePlace Scotland</u>.</p></center>
 </h2>
 </body>
 </html>
