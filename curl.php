@@ -13,7 +13,7 @@ $apikey = fread($f, filesize($apifile)-1);
 fclose($f);
 
 # Get static chargepoint information
-$f = file_get_contents('/var/www/dbc/static.txt');
+$f = file_get_contents('./dbc/static.txt');
 $static = json_decode($f, false);
 ?>
 
