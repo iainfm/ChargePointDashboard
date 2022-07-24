@@ -1,113 +1,64 @@
 a {
-	color: white;
+	color: black;
 	text-decoration: none;
 }
 
 a:visited {
-	color: white;
+	color: black;
 	text-decoration: none;
 }
+
 body {
-	background-color: black;
+	background-color: white;
 	font-weight:	normal;
-	color:		white;
+	color:		black;
 	text-transform:	none;
 	text-align:	left;
-	font-family: "Helvetica", Sans-Serif;
-}
-
-.tTitleL {
-	background-color: #ffffff;
-	color:		black;
-	margin:		0px;
-	font-size:	6vw;
-  	padding: 0px;
-  	background-color: #ffffff;
-  	text-align: left;
-}
-
-.tTitleR {
-	background-color: #ffffff;
-	color:		black;
-	margin:		0px;
-	font-size:	2vw;
-  	padding: 8px;
-  	background-color: #ffffff;
-  	text-align: right;
-	vertical-align: bottom;
-}
-
-
-th {
-	padding:	15px 20px;
-	background:	rgb(40,40,40);
-	font-weight:	normal;
-	color:		white;
-	text-align:	left;
 	font-family:	"Helvetica", Sans-Serif;
-	font-size:	4vw;
 }
 
-th.alert {
-	padding:	15px 20px;
-	background:	rgb(40,40,40);
-	font-weight:	normal;
-	color:		orange;
+h3 {
+	font-size:	1.3vw;
 	text-align:	center;
-	font-family:	"Helvetica", Sans-Serif;
-	font-size:	4vw;
-}
-
-td {
-	padding:	15px 20px;
-	background:	rgb(60,60,60);
-	font-weight:	normal;
-	color:		yellow;
-	# text-transform:	uppercase;
-	font-family: "Helvetica", Sans-Serif;
-	vertical-align: top;
-	font-size:	4vw;
-	border: 4px solid black;
-}
-
-td.address {
-	padding:	15px 20px;
-	background:	rgb(60,60,60);
-	font-weight:	normal;
-	color:		yellow;
-	# text-transform:	uppercase;
-	font-family: "Helvetica", Sans-Serif;
-	vertical-align: top;
-	font-size:	4vw;
-	border: 4px solid black;
 }
 
 table {
 	width:		100%;
 	align:		center;
-	background:	rgb(60,60,60);
-	border: 1px solid black;
+	# border-collapse: collapse;
+	border:		10px solid;
+	border-color:	white;
+}
+
+td {
+	padding:	15px 20px;
+	background:	rgb(255,255,255);
+	font-weight:	normal;
+	color:		DarkSlateGrey;
+	font-family: "Helvetica", Sans-Serif;
+	vertical-align: middle;
+	font-size:	4vw;
 	border-collapse: collapse;
 }
 
-.tfooter {
-  padding: 0px;
-  background-color: #ffffff;
-  text-align: center;
+td.address {
+	background:	whitesmoke;
+	font-weight:	bold;
+	color:		steelblue;
+	vertical-align: top;
 }
 
-.tfooterL {
-	padding: 0px;
-	background-color: white;
-	border-width: 0px;
-	text-align: left;
-	vertical-align: center;
+td.available {
+	background:	aquamarine;
+	color:		DarkOliveGreen;
 }
 
-.tfooterR {
-	padding: 0px;
-	background-color: white;
-	border-width: 0px;
-	text-align: right;
-	vertical-align: bottom;
+td.occupied {
+	background:	PeachPuff;
+	color:		Brown;
+}
+
+td.unknown {
+	background:	LightGrey;
+	color:		DimGrey;
 }

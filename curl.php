@@ -76,9 +76,15 @@ usort($results, 'sortByConn');
 usort($results, 'sortByID');
 
 $current = '';
+$last = '1';
 foreach ($results as $result) {
 
 	$etd = '';
+
+	if ($result[2] < $last) {
+		print "<tr><td colspan=100%></td></tr>";
+	}
+	$last = $result[2];
 
 	if ($result[0] != $current) {
 
@@ -118,16 +124,15 @@ foreach ($results as $result) {
 		print "</TD>\n";
 		print "</TR>\n";
 	}
-
 	if ($result[2] == '1') {
 		print "</TR>\n";
 	}
-	print "<TD style='vertical-align: middle; width:0.1%'>" . $result[2] . "</TD>";
-	print "<TD style='vertical-align: middle; width:0.1%'>";
+	print "<TD style='width:0.1%'>" . $result[2] . "</TD>";
+	print "<TD style='width:0.1%'>";
 	print "<img src ='" . $conplug[$result[2]] . ".png'";
 	print " style='width:70px;height:70px;'</img>";
 	print "</TD>";
-	print "<TD style='vertical-align: middle; width:0.1%'>";
+	print "<TD style='width:0.1%'>";
 	print $conspeed[$result[2]] . "kW&nbsp;";
 	print $contype[$result[2]];
 	print "</TD>";
@@ -135,19 +140,22 @@ foreach ($results as $result) {
 	
 	switch ($result[3]) {
 		case 'OCCUPIED':
-			$etd = '<font color = "orange">';
+			$etd = 'occupied';
 			break;
 		case 'UNKNOWN':
-			$etd = '<font color = "grey">';
+			$etd = 'unknown';
 			break;
 		case 'AVAILABLE':
-			$etd = '<font color = "lime">';
+			$etd = 'available';
 			break;
 		default:
-			$etd = '<font color = "grey">';
+			$etd = '';
 	}
 	
-	print "<TD style='vertical-align: middle'>" . $etd . $result[3] . "</font></TD><TR>\n";
+	print "<TD class='" . $etd . "'>" . $result[3] . "</TD><TR>\n";
+	if ($result[2]  === (count($result) - 1)) {
+		print "<tr><td colspan=100%>***</td></tr>";
+	}
 }
 print "</TABLE>\n";
 ?>
@@ -177,10 +185,10 @@ echo '</a>';
 </p>
 <hr>
 <p>
-<font size=3>
+<h3>
 Disclaimer: This is an unofficial service that is not affiliated with ChargePlace Scotland. Data is supplied without any warranty and may be incorrect or out of date. Additional connection, parking, charging or other fees may apply.</p>
 For official information please visit
 <br><a href="https://www.chargeplacescotland.org"</a><u>ChargePlace Scotland</u>.</p></center>
-</font>
+</h3>
 </body>
 </html>
