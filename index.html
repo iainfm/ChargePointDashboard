@@ -13,8 +13,15 @@
   <style>
   body, html {
 	font-size: 2vw;
-	color: yellow !important;
+	font-family: "Helvetica", Sans-Serif;
+	color: black !important;
 	}
+  th {
+        font-size: 3vw;
+        font-family: "Helvetica", Sans-Serif;
+        color: black;
+  }
+
   input {
 	font-size: 2vw;
 	}
@@ -29,7 +36,7 @@
   <link rel="icon" sizes="192x192" href="img/192x192.png">
   <link rel="icon" type="image/png" href="img/favicon-32x32.png" sizes="32x32" />
   <link rel="icon" type="image/png" href="img/favicon-16x16.png" sizes="16x16" />
-  <link rel="stylesheet" type="text/css" href="cpdash.css">
+  <link rel="stylesheet" type="text/css" href="cpdash.css?a=1">
   <link rel="stylesheet" href="https:////code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -67,7 +74,8 @@ function bodge() {
 </head>
 <body onload="return bodge()">
 <div>
-<table class='tTitleL'><tr><th colspan = 2 class='tTitleL'>ChargePlace Dashboard</th><tr>
+<table class='address'><tr><td colspan = 2 class='address'>ChargePlace Dashboard</td><tr>
+<td>Enter the IDs of the ChargePlace Scotland charging stations below. Separate multiple stations with commas.
 </table>
 <p>
 <center>
@@ -79,7 +87,11 @@ function bodge() {
   </center>
   </p>
 </div>
- 
+<h3>
+Disclaimer: This is an unofficial service that is not affiliated with ChargePlace Scotland. Data is supplied without any warranty and may be incorrect or out of date. Additional connection, parking, charging or other fees may apply.</p>
+For official information please visit
+<br><a href="https://www.chargeplacescotland.org"</a><u>ChargePlace Scotland</u>.</p></center>
+</h3> 
  
 </body>
 </html>
