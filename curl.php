@@ -31,15 +31,6 @@ $static = json_decode($f, false);
 <body>
 <?php
 
-# Functions to sort the returned data into our preferred order
-function sortByID($a, $b) {
-	return $a[0] - $b[0];
-}
-
-function sortByConn($a, $b) {
-	return $a[2] - $b[2];
-}
-
 # Get the charge station IDs requested and put them into the format we need
 $cpIDs = str_replace('%20', '', $_GET["ids"]);
 $cpIDs = str_replace(' ', '', $cpIDs);
@@ -97,8 +88,8 @@ foreach ($y->chargePoints as $item) {
 	}
 
 # Sort the results the way we like 'em
-usort($results, 'sortByConn');
-usort($results, 'sortByID');
+sort($results); # , 'sortByConn');
+sort($results, 'sortByID');
 
 # A bit of a fudge to tell when we're at a new charger ID and
 # the last connector of a particular charger
@@ -131,6 +122,8 @@ foreach ($results as $result) {
 		# Build the connector types, speeds and other info
 		foreach ($static->features as $cp) {
 			if ($cp->properties->name == $result[0]) {
+				$concoords[$conn->connectorID] = $cp->geometry->coordinates;
+				# print $concoords[''][0] . ', ' . $concoords[''][1] . '<br>';
 				foreach ($cp->properties->connectorGroups as $cg) {
 					foreach ($cg->connectors as $conn) {
 					$conplug[$conn->connectorID] = $conn->connectorPlugType;
