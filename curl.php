@@ -89,7 +89,7 @@ foreach ($y->chargePoints as $item) {
 
 # Sort the results the way we like 'em
 sort($results); # , 'sortByConn');
-# sort($results, 'sortByID');
+sort($results, 'sortByID');
 
 # A bit of a fudge to tell when we're at a new charger ID and
 # the last connector of a particular charger
@@ -134,12 +134,15 @@ foreach ($results as $result) {
 				}
 
 				# Print the useful parts of the address
-				foreach ($cp->properties->address as $ad) {
-					if (($ad != '') && ($ad != 'GB')) {
-						print $ad;
-						print '<br>';
-					}	
-				}
+				# NB this is only as good as the data supplied!
+				$ad = $cp->properties->address;
+				foreach($ad as $key => $value) {
+					if (($key != 'sitename') && ($key != 'country') && ($value != '')) {
+						print $value .  "<br>";
+					}
+				} 
+
+
 
 				# Add the price/kWh if non-zero
 				$fee = $cp->properties->tariff->amount;
