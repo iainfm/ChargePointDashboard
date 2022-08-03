@@ -89,7 +89,7 @@ foreach ($y->chargePoints as $item) {
 
 # Sort the results the way we like 'em
 sort($results); # , 'sortByConn');
-sort($results, 'sortByID');
+sort($results); # , 'sortByID');
 
 # A bit of a fudge to tell when we're at a new charger ID and
 # the last connector of a particular charger
