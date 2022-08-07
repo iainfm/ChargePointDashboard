@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<body>
+<link rel="stylesheet" type="text/css" href="calc.css">
+
+<h1>Charging Guesstimator</h1>
+<table>
+<tr>
+<td>Usable battery capacity:</td>
+<td style='width:0.1%'><input id="Uc" value="57"></td>
+<td>&nbsp;kWh</td>
+</tr><tr>
+<td>Battery at beginning of charge:</td>
+<td style='width:0.1%'><input id="Pc" value = "20"></td>
+<td>&nbsp;%</td>
+</tr><tr>
+<td>Charge station charging rate:</td>
+<td style='width:0.1%'><input id="Cr" value = "7"></td>
+<td>&nbsp;kW</td>
+</tr>
+<tr>
+<td colspan = 3>
+<button type="button" onclick="calc()">Guesstimate!</button>
+</td></tr>
+</table>
+<table>
+<td id = "calc"></td>
+</table>
+<script>
+function calc() {
+	let Uc = document.getElementById("Uc").value;
+	let Pc = document.getElementById("Pc").value;
+	let Cr = document.getElementById("Cr").value;
+	let d;
+	let text;
+	if (isNaN(Uc) || isNaN(Pc) || isNaN(Cr)) {
+		text = "Input not valid";
+	} else {
+		let d = 60 * (Uc - (Pc / 100) * Uc) / Cr;
+		let hours = (d / 60);
+		let h = Math.floor(hours);
+		let minutes = (hours - h) * 60;
+		let m = Math.round(minutes);
+		if (60 == m) { m = 0 ; h++ };
+		text = "Estimated time to full charge: " + h + " hours, " + m + " minutes.";
+	}
+	document.getElementById("calc").innerHTML = text;
+}
+</script>
+
+</body>
+</html>
+

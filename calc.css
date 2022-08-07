@@ -1,0 +1,63 @@
+body {
+	background-color: white;
+	font-weight:	normal;
+	color:		black;
+	text-transform:	none;
+	text-align:	left;
+	font-family:	"Helvetica", Sans-Serif;
+}
+
+h3 {
+	font-size:	1.3vw;
+	text-align:	center;
+}
+
+table {
+	width:		100%;
+	align:		center;
+	border-collapse: collapse;
+	# border:		10px solid;
+	border-color:	black;
+}
+
+td, input, button {
+	padding:	5px 5px;
+	background:	rgb(255,255,255);
+	font-weight:	normal;
+	color:		DarkSlateGrey;
+	font-family: "Helvetica", Sans-Serif;
+	vertical-align: middle;
+	font-size:	4vw;
+	border-collapse: collapse;
+	width:		0.1%;
+}
+
+button {
+	width:		100%;
+}
+
+input {
+	width:		100%
+}
+
+td.address {
+	background:	whitesmoke;
+	font-weight:	bold;
+	color:		steelblue;
+	vertical-align: top;
+}
+
+td.available {
+	background:	aquamarine;
+	color:		DarkOliveGreen;
+}
+
+td.occupied {
+	background:	PeachPuff;
+	color:		Brown;
+}
+
+td.unknown {
+	background:	LightGrey;
+	color:		DimGrey;
+}
