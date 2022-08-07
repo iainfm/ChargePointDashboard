@@ -34,6 +34,8 @@ td, input, button {
 
 button {
 	width:		100%;
+	background:	steelblue;
+	color:		white;
 }
 
 input {
