@@ -10,8 +10,12 @@
 <td style='width:0.1%'><input id="Uc" value="57"></td>
 <td>&nbsp;kWh</td>
 </tr><tr>
-<td>Battery at beginning of charge:</td>
+<td>Battery charge remaining:</td>
 <td style='width:0.1%'><input id="Pc" value = "20"></td>
+<td>&nbsp;%</td>
+</tr><tr>
+<td>Target battery charge:</td>
+<td style='width:0.1%'><input id="Tc" value = "100"></td>
 <td>&nbsp;%</td>
 </tr><tr>
 <td>Charge station charging rate:</td>
@@ -30,19 +34,20 @@
 function calc() {
 	let Uc = document.getElementById("Uc").value;
 	let Pc = document.getElementById("Pc").value;
+	let Tc = document.getElementById("Tc").value;
 	let Cr = document.getElementById("Cr").value;
 	let d;
 	let text;
-	if (isNaN(Uc) || isNaN(Pc) || isNaN(Cr)) {
+	if (isNaN(Uc) || isNaN(Pc) || isNaN(Cr) || isNaN(Tc)) {
 		text = "Input not valid";
 	} else {
-		let d = 60 * (Uc - (Pc / 100) * Uc) / Cr;
+		let d = 60 * ((Uc * Tc / 100) - (Pc / 100) * Uc) / Cr;
 		let hours = (d / 60);
 		let h = Math.floor(hours);
 		let minutes = (hours - h) * 60;
 		let m = Math.round(minutes);
 		if (60 == m) { m = 0 ; h++ };
-		text = "Estimated time to full charge: " + h + " hours, " + m + " minutes.";
+		text = "Estimated time to " + Tc + "% charge: " + h + " hours, " + m + " minutes.";
 	}
 	document.getElementById("calc").innerHTML = text;
 }
