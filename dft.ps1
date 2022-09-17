@@ -1,4 +1,4 @@
-﻿$x = [xml](Invoke-WebRequest 'https://chargepoints.dft.gov.uk/api/retrieve/registry/format/xml/post-town/Dumbarton/')
+$x = [xml](Invoke-WebRequest 'https://chargepoints.dft.gov.uk/api/retrieve/registry/format/xml/post-town/Dumbarton/')
 
 # foreach ($cd in $x.ChargeDevices.ChargeDevice) {
 
