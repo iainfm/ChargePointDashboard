@@ -1,1 +1,1 @@
-powershell -executionpolicy bypass
+powershell -executionpolicy bypass -noexit
